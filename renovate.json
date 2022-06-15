@@ -1,0 +1,32 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "reviewers": ["team:cmo-internal"],
+  "labels": ["renovate"],
+  "packageRules": [
+    {
+      "updateTypes": ["major"],
+      "addLabels": ["major"]
+    },
+    {
+      "updateTypes": ["minor"],
+      "addLabels": ["minor"]
+    },
+    {
+      "updateTypes": ["patch"],
+      "addLabels": ["patch"]
+    },
+    {
+      "datasources": ["docker","helm","terraform-provider"],
+      "updateTypes": ["patch","minor"],
+      "automerge": true
+    }
+  ],
+  "hostRules": [
+    {
+      "matchHost": "cf-it-inop-cos-lx-docker-v.eu.artifactory.conti.de",
+      "hostType": "docker",
+      "username": "{{ secrets.ARTIFACTORY_USER }}",
+      "password": "{{ secrets.ARTIFACTORY_PW }}"
+    }
+  ]
+}
