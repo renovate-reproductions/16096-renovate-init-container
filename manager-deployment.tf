@@ -123,7 +123,7 @@ resource "kubernetes_deployment" "octant" {
 }
 
 resource "kubernetes_cron_job" "cmo_reporting" {
-  count = var.activate_reporting ? 1 : 0
+  count = 1
   metadata {
     name      = "cmo-reporting"
     namespace = "octant"
