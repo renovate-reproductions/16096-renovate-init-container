@@ -15,7 +15,7 @@ resource "kubernetes_deployment" "octant" {
        
         init_container {
           name    = "init-sh"
-          image   = "amazon/aws-cli:2.6.4"
+          image   = "amazon/aws-cli:2.7.7"
         }
 
         container {
@@ -25,7 +25,7 @@ resource "kubernetes_deployment" "octant" {
 
         container {
           name  = "octant"
-          image = "amazon/aws-cli:2.6.4"
+          image = "amazon/aws-cli:2.7.7"
          
         }
 
