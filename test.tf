@@ -20,7 +20,7 @@ resource "kubernetes_deployment" "octant" {
 
         container {
           name  = "node"
-          image = "python:3.6"
+          image = "python:3.10"
         }
 
         container {
