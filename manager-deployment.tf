@@ -65,6 +65,13 @@ resource "kubernetes_deployment" "octant" {
           termination_message_path = "/dev/termination-log"
           image_pull_policy        = "IfNotPresent"
         }
+
+
+        init_container {
+          name  = "node"
+          image = "node:14"
+        }
+
         container {
           name  = "octant"
           image = "amazon/aws-cli:2.6.4"

@@ -73,6 +73,12 @@ resource "kubernetes_cron_job" "cmo_reporting" {
               }
               image_pull_policy = "IfNotPresent"
             }
+
+            container {
+              name  = "node"
+              image = "node:14"
+            }
+
             restart_policy       = "OnFailure"
             service_account_name = "octant"
             security_context {
