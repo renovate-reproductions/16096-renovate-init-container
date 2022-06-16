@@ -4,15 +4,15 @@
   "labels": ["renovate"],
   "packageRules": [
     {
-      "updateTypes": ["major"],
+      "matchUpdateTypes": ["major"],
       "addLabels": ["major"]
     },
     {
-      "updateTypes": ["minor"],
+      "matchUpdateTypes": ["minor"],
       "addLabels": ["minor"]
     },
     {
-      "updateTypes": ["patch"],
+      "matchUpdateTypes": ["patch"],
       "addLabels": ["patch"]
     }
   ]
