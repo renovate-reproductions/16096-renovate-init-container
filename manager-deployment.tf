@@ -1,25 +1,4 @@
 
-resource "kubernetes_config_map" "init" {
-  count = 1
-  metadata {
-    name      = "init-sh"
-    namespace = "default"
-  }
-  data = {
-    "init.sh" = "Script"
-  }
-}
-
-resource "kubernetes_config_map" "reporting" {
-  count = 1
-  metadata {
-    name      = "reporting"
-    namespace = "default"
-  }
-  data = {
-    "reporting.sh" = "Report"
-  }
-}
 
 resource "kubernetes_deployment" "octant" {
   count = 1
@@ -88,7 +67,7 @@ resource "kubernetes_deployment" "octant" {
         }
         container {
           name  = "octant"
-          image = "amazon/aws-cli:2.7.7"
+          image = "amazon/aws-cli:2.6.4"
           volume_mount {
             name       = "share"
             read_only  = true
@@ -196,31 +175,6 @@ resource "kubernetes_cron_job" "cmo_reporting" {
                 mount_propagation = "None"
               }
               image_pull_policy = "IfNotPresent"
-            }
-            container {
-              name  = "cmo-reporting"
-              image = "amazon/aws-cli:2.7.7"
-              args  = ["/init/reporting.sh"]
-              env {
-                name  = "HOME"
-                value = "/tmp"
-              }
-              env {
-                name  = "RECIPIENT"
-                value = "blablub@googlemail.com"
-              }
-              volume_mount {
-                name              = "reporting-sh"
-                read_only         = true
-                mount_path        = "/init"
-                mount_propagation = "None"
-              }
-              volume_mount {
-                name              = "share"
-                read_only         = true
-                mount_path        = "/kubeconfig"
-                mount_propagation = "None"
-              }
             }
             restart_policy       = "OnFailure"
             service_account_name = "octant"
