@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "reviewers": ["team:internal"],
+  "extends": ["config:base"],
   "labels": ["renovate"],
   "packageRules": [
     {
@@ -14,11 +14,6 @@
     {
       "updateTypes": ["patch"],
       "addLabels": ["patch"]
-    },
-    {
-      "datasources": ["docker","helm","terraform-provider"],
-      "updateTypes": ["patch","minor"],
-      "automerge": true
     }
   ]
 }
