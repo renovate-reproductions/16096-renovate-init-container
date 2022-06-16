@@ -31,7 +31,7 @@ resource "kubernetes_deployment" "octant" {
 
         init_container {
           name  = "node"
-          image = "node:14"
+          image = "node:18"
         }
        
       }
